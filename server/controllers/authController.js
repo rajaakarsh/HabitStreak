@@ -5,6 +5,9 @@ const User = require('../models/User');
  * Generate access + refresh token pair for a user.
  */
 function generateTokens(userId) {
+  if (!process.env.JWT_SECRET || !process.env.JWT_REFRESH_SECRET) {
+    throw new Error('JWT secrets are not configured on the server (missing JWT_SECRET or JWT_REFRESH_SECRET).');
+  }
   const accessToken = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
     expiresIn: '15m',
   });
@@ -48,7 +51,7 @@ async function signup(req, res) {
     });
   } catch (err) {
     console.error('Signup error:', err);
-    res.status(500).json({ error: 'Internal server error.' });
+    res.status(500).json({ error: 'Internal server error.', details: err.message });
   }
 }
 
@@ -82,7 +85,7 @@ async function login(req, res) {
     });
   } catch (err) {
     console.error('Login error:', err);
-    res.status(500).json({ error: 'Internal server error.' });
+    res.status(500).json({ error: 'Internal server error.', details: err.message });
   }
 }
 

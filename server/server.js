@@ -36,7 +36,7 @@ app.get('*', (req, res) => {
 // ---------------------------------------------------------------------------
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
-  res.status(500).json({ error: 'Something went wrong.' });
+  res.status(500).json({ error: 'Something went wrong.', details: err.message });
 });
 
 // ---------------------------------------------------------------------------
@@ -71,14 +71,23 @@ async function startServer() {
   });
 }
 
-// If running on Vercel, connect immediately without starting a long-running listener
+// Serverless / Vercel Database Connection Middleware
 if (process.env.VERCEL) {
-  if (process.env.MONGODB_URI) {
-    mongoose.connect(process.env.MONGODB_URI, { serverSelectionTimeoutMS: 3000 })
-      .then(() => console.log('✅ Connected to MongoDB (Vercel)'))
-      .catch(err => console.error('MongoDB connection error:', err));
-  }
+  app.use(async (req, res, next) => {
+    if (!process.env.MONGODB_URI) {
+      return res.status(500).json({ error: 'Server configuration error: MONGODB_URI is not set in Vercel.' });
+    }
+    if (mongoose.connection.readyState !== 1) {
+      try {
+        await mongoose.connect(process.env.MONGODB_URI, { serverSelectionTimeoutMS: 3000 });
+      } catch (err) {
+        return res.status(500).json({ error: 'Failed to connect to MongoDB.', details: err.message });
+      }
+    }
+    next();
+  });
 } else {
+  // Only start the long-running listener if not on Vercel
   startServer();
 }
 
