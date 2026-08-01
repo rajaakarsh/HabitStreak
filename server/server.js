@@ -47,7 +47,6 @@ const PORT = process.env.PORT || 3000;
 async function startServer() {
   let mongoUri = process.env.MONGODB_URI;
 
-  // Try connecting to the configured URI first
   try {
     await mongoose.connect(mongoUri, { serverSelectionTimeoutMS: 3000 });
     console.log('✅ Connected to MongoDB');
@@ -72,4 +71,16 @@ async function startServer() {
   });
 }
 
-startServer();
+// If running on Vercel, connect immediately without starting a long-running listener
+if (process.env.VERCEL) {
+  if (process.env.MONGODB_URI) {
+    mongoose.connect(process.env.MONGODB_URI, { serverSelectionTimeoutMS: 3000 })
+      .then(() => console.log('✅ Connected to MongoDB (Vercel)'))
+      .catch(err => console.error('MongoDB connection error:', err));
+  }
+} else {
+  startServer();
+}
+
+// Export for Vercel serverless function
+module.exports = app;
