@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Serve the frontend
-app.use(express.static(path.join(__dirname, '..', 'client')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // ---------------------------------------------------------------------------
 // API Routes
@@ -28,7 +28,7 @@ app.use('/api/habits', habitRoutes);
 
 // Fallback: serve index.html for any non-API route (SPA-style)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
 // ---------------------------------------------------------------------------
