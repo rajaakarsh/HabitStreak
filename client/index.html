@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="HabitStreak — A minimal habit tracker that makes daily consistency satisfying." />
+  <meta name="theme-color" content="#09090b" />
+  <title>HabitStreak</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <!-- ================================================================== -->
+  <!-- TOAST CONTAINER                                                     -->
+  <!-- ================================================================== -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- ================================================================== -->
+  <!-- HOME / LANDING PAGE                                                 -->
+  <!-- ================================================================== -->
+  <section id="page-home" class="page page--active">
+
+    <!-- Nav -->
+    <nav class="home-nav">
+      <div class="home-nav__left">
+        <i data-lucide="zap" class="home-nav__icon"></i>
+        <span class="home-nav__brand">HabitStreak</span>
+      </div>
+      <div class="home-nav__right">
+        <button class="btn btn--ghost" id="nav-login">Log in</button>
+        <button class="btn btn--primary btn--sm" id="nav-signup">Get Started</button>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero__badge"><i data-lucide="sparkles" class="icon-inline"></i> Free &amp; open-source</div>
+      <h1 class="hero__title">
+        Build habits.<br/>
+        <span class="hero__title--accent">Track streaks.</span>
+      </h1>
+      <p class="hero__subtitle">
+        A minimal habit tracker that turns daily consistency into 
+        something you can see and feel. One click to check in. Zero friction.
+      </p>
+      <div class="hero__actions">
+        <button class="btn btn--primary btn--lg" id="hero-cta">Start Tracking — It's Free</button>
+      </div>
+
+      <!-- Dashboard Preview -->
+      <div class="hero__preview">
+        <div class="preview-card">
+          <div class="preview-card__bar" style="--bar-color: #10b981;"></div>
+          <div class="preview-card__top">
+            <div class="preview-card__dot" style="background:#10b981;"></div>
+            <span class="preview-card__name">Morning Run</span>
+          </div>
+          <div class="preview-card__bottom">
+            <span class="preview-card__streak" style="color:#10b981;">14</span>
+            <div class="preview-card__check preview-card__check--done" style="--check-color:#10b981;"><i data-lucide="check" class="icon-sm"></i></div>
+          </div>
+        </div>
+        <div class="preview-card">
+          <div class="preview-card__bar" style="--bar-color: #8b5cf6;"></div>
+          <div class="preview-card__top">
+            <div class="preview-card__dot" style="background:#8b5cf6;"></div>
+            <span class="preview-card__name">Read 30 min</span>
+          </div>
+          <div class="preview-card__bottom">
+            <span class="preview-card__streak" style="color:#8b5cf6;">7</span>
+            <div class="preview-card__check" style="--check-color:#8b5cf6;"></div>
+          </div>
+        </div>
+        <div class="preview-card">
+          <div class="preview-card__bar" style="--bar-color: #f59e0b;"></div>
+          <div class="preview-card__top">
+            <div class="preview-card__dot" style="background:#f59e0b;"></div>
+            <span class="preview-card__name">Meditate</span>
+          </div>
+          <div class="preview-card__bottom">
+            <span class="preview-card__streak" style="color:#f59e0b;">32</span>
+            <div class="preview-card__check preview-card__check--done" style="--check-color:#f59e0b;"><i data-lucide="check" class="icon-sm"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trusted By -->
+    <div class="trusted-by">
+      <p class="trusted-by__text">Trusted by builders at</p>
+      <div class="trusted-by__logos">
+        <i data-lucide="github"></i>
+        <i data-lucide="figma"></i>
+        <i data-lucide="framer"></i>
+        <i data-lucide="trello"></i>
+        <i data-lucide="twitch"></i>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="features">
+      <div class="features__grid">
+        <div class="feature-card">
+          <i data-lucide="zap" class="feature-card__icon"></i>
+          <h3 class="feature-card__title">One-click check-ins</h3>
+          <p class="feature-card__desc">No modals, no confirmations. Tap once to log your day. That's it.</p>
+        </div>
+        <div class="feature-card">
+          <i data-lucide="flame" class="feature-card__icon"></i>
+          <h3 class="feature-card__title">Streak tracking</h3>
+          <p class="feature-card__desc">Current streak and personal best — always visible, always motivating.</p>
+        </div>
+        <div class="feature-card">
+          <i data-lucide="bar-chart-2" class="feature-card__icon"></i>
+          <h3 class="feature-card__title">Activity grid</h3>
+          <p class="feature-card__desc">GitHub-style contribution graph for every habit. See your year at a glance.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Proof -->
+    <div class="social-proof">
+      <div class="social-proof__stat">
+        <span class="social-proof__number">∞</span>
+        <span class="social-proof__label">Habits to track</span>
+      </div>
+      <div class="social-proof__divider"></div>
+      <div class="social-proof__stat">
+        <span class="social-proof__number">1</span>
+        <span class="social-proof__label">Click to check in</span>
+      </div>
+      <div class="social-proof__divider"></div>
+      <div class="social-proof__stat">
+        <span class="social-proof__number">$0</span>
+        <span class="social-proof__label">Forever free</span>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="how-it-works">
+      <div class="section-header">
+        <h2 class="section-header__title">How it works</h2>
+        <p class="section-header__subtitle">Three simple steps to build your consistency.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline__item">
+          <div class="timeline__number">1</div>
+          <div class="timeline__content">
+            <h3 class="timeline__title">Create a habit</h3>
+            <p class="timeline__desc">Define what you want to achieve. Keep it simple and actionable.</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__number">2</div>
+          <div class="timeline__content">
+            <h3 class="timeline__title">Check in daily</h3>
+            <p class="timeline__desc">One click is all it takes. No friction, no complex forms.</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__number">3</div>
+          <div class="timeline__content">
+            <h3 class="timeline__title">Watch it grow</h3>
+            <p class="timeline__desc">Visualize your progress over time with our beautiful activity grid.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="testimonials">
+      <div class="section-header">
+        <h2 class="section-header__title">Loved by builders</h2>
+      </div>
+      <div class="testimonials__grid">
+        <div class="testimonial-card">
+          <p class="testimonial-card__text">"The most frictionless habit tracker I've ever used. The activity grid gives me the exact motivation I need."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar"><i data-lucide="user"></i></div>
+            <div>
+              <div class="testimonial-card__name">Sarah J.</div>
+              <div class="testimonial-card__role">Frontend Engineer</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-card__text">"I moved away from bulky productivity tools. HabitStreak is fast, minimal, and beautiful."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar"><i data-lucide="user"></i></div>
+            <div>
+              <div class="testimonial-card__name">David M.</div>
+              <div class="testimonial-card__role">Product Designer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq">
+      <div class="section-header">
+        <h2 class="section-header__title">Frequently asked questions</h2>
+      </div>
+      <div class="faq__list">
+        <div class="faq-item">
+          <button class="faq-item__question">
+            <span>Is it really free?</span>
+            <i data-lucide="chevron-down" class="faq-item__icon"></i>
+          </button>
+          <div class="faq-item__answer">
+            <p>Yes, HabitStreak is completely free and open-source for personal use. We believe in accessible tools for everyone.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__question">
+            <span>Can I track habits multiple times a day?</span>
+            <i data-lucide="chevron-down" class="faq-item__icon"></i>
+          </button>
+          <div class="faq-item__answer">
+            <p>Currently, HabitStreak is designed for a simple binary check-in (done/not done) per day to keep things maximally simple.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__question">
+            <span>Will you add a mobile app?</span>
+            <i data-lucide="chevron-down" class="faq-item__icon"></i>
+          </button>
+          <div class="faq-item__answer">
+            <p>The web app is fully responsive and behaves like a native app. You can add it to your home screen via your browser.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="home-cta">
+      <h2 class="home-cta__title">Ready to build consistency?</h2>
+      <p class="home-cta__subtitle">Create your first habit in under 10 seconds.</p>
+      <button class="btn btn--primary btn--lg" id="bottom-cta">Get Started Free</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="home-footer">
+      <div class="home-footer__content">
+        <div class="home-footer__col">
+          <div class="home-nav__left" style="margin-bottom: 16px;">
+            <i data-lucide="zap" class="home-nav__icon"></i>
+            <span class="home-nav__brand">HabitStreak</span>
+          </div>
+          <span class="home-footer__text">Built with focus. No distractions.</span>
+        </div>
+        <div class="home-footer__links">
+          <a href="#">Twitter</a>
+          <a href="#">GitHub</a>
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+        </div>
+      </div>
+    </footer>
+
+  </section>
+
+  <!-- ================================================================== -->
+  <!-- AUTH PAGE                                                           -->
+  <!-- ==================================================================  -->
+  <section id="page-auth" class="page">
+    <div class="auth-wrapper">
+      <div class="auth-card">
+        <button class="btn btn--ghost btn--back auth-back" id="btn-auth-back">← Back</button>
+        <div class="auth-brand">
+          <i data-lucide="zap" class="auth-brand__icon"></i>
+          <h1 class="auth-brand__name">HabitStreak</h1>
+          <p class="auth-brand__tagline">Consistency, visualized.</p>
+        </div>
+
+        <!-- Tab Switcher -->
+        <div class="auth-tabs">
+          <button class="auth-tab auth-tab--active" data-tab="login" id="tab-login">Log In</button>
+          <button class="auth-tab" data-tab="signup" id="tab-signup">Sign Up</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="form-login" class="auth-form">
+          <div class="input-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" placeholder="you@example.com" required autocomplete="email" />
+          </div>
+          <div class="input-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password" />
+          </div>
+          <button type="submit" class="btn btn--primary btn--full" id="btn-login">
+            <span class="btn__text">Log In</span>
+            <span class="btn__loader"></span>
+          </button>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="form-signup" class="auth-form auth-form--hidden">
+          <div class="input-group">
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" placeholder="you@example.com" required autocomplete="email" />
+          </div>
+          <div class="input-group">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" placeholder="Min. 6 characters" required minlength="6" autocomplete="new-password" />
+          </div>
+          <button type="submit" class="btn btn--primary btn--full" id="btn-signup">
+            <span class="btn__text">Create Account</span>
+            <span class="btn__loader"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================== -->
+  <!-- DASHBOARD PAGE                                                      -->
+  <!-- ================================================================== -->
+  <section id="page-dashboard" class="page">
+    <header class="topbar">
+      <div class="topbar__left">
+        <i data-lucide="zap" class="topbar__icon"></i>
+        <span class="topbar__brand">HabitStreak</span>
+      </div>
+      <div class="topbar__right">
+        <span class="topbar__email" id="user-email"></span>
+        <button class="btn btn--ghost" id="btn-logout">Log out</button>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <div class="dashboard__header">
+        <div>
+          <h2 class="dashboard__title">Your Habits</h2>
+          <p class="dashboard__subtitle" id="dashboard-date"></p>
+        </div>
+        <button class="btn btn--accent" id="btn-add-habit">
+          <span class="btn__plus">+</span> New
+        </button>
+      </div>
+
+      <!-- Add Habit Inline Form -->
+      <div class="add-habit-form" id="add-habit-form" style="display:none;">
+        <div class="add-habit-form__inner">
+          <input type="text" id="new-habit-name" placeholder="Habit name…" class="add-habit-form__input" maxlength="100" />
+          <div class="add-habit-form__colors" id="color-picker">
+            <button class="color-dot color-dot--active" data-color="#10b981" style="--dot-color:#10b981;" title="Emerald"></button>
+            <button class="color-dot" data-color="#8b5cf6" style="--dot-color:#8b5cf6;" title="Violet"></button>
+            <button class="color-dot" data-color="#f59e0b" style="--dot-color:#f59e0b;" title="Amber"></button>
+            <button class="color-dot" data-color="#ef4444" style="--dot-color:#ef4444;" title="Rose"></button>
+            <button class="color-dot" data-color="#06b6d4" style="--dot-color:#06b6d4;" title="Cyan"></button>
+            <button class="color-dot" data-color="#6366f1" style="--dot-color:#6366f1;" title="Indigo"></button>
+            <button class="color-dot" data-color="#f97316" style="--dot-color:#f97316;" title="Orange"></button>
+            <button class="color-dot" data-color="#ec4899" style="--dot-color:#ec4899;" title="Pink"></button>
+          </div>
+          <div class="add-habit-form__actions">
+            <button class="btn btn--accent btn--sm" id="btn-save-habit">Save</button>
+            <button class="btn btn--ghost btn--sm" id="btn-cancel-habit">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Habit Cards Grid -->
+      <div class="habit-grid" id="habit-grid">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="empty-state" style="display:none;">
+        <i data-lucide="inbox" class="empty-state__icon"></i>
+        <h3 class="empty-state__title">No habits yet</h3>
+        <p class="empty-state__text">Create your first habit and start building streaks today.</p>
+      </div>
+    </main>
+  </section>
+
+  <!-- ================================================================== -->
+  <!-- HABIT DETAIL PAGE                                                   -->
+  <!-- ================================================================== -->
+  <section id="page-detail" class="page">
+    <header class="topbar">
+      <div class="topbar__left">
+        <button class="btn btn--ghost btn--back" id="btn-back">← Back</button>
+      </div>
+      <div class="topbar__right">
+        <button class="btn btn--ghost" id="btn-logout-detail">Log out</button>
+      </div>
+    </header>
+
+    <main class="detail">
+      <div class="detail__header">
+        <div class="detail__icon" id="detail-icon"></div>
+        <h2 class="detail__name" id="detail-name"></h2>
+      </div>
+
+      <div class="detail__stats">
+        <div class="stat-card" id="stat-current">
+          <span class="stat-card__number" id="detail-current-streak">0</span>
+          <span class="stat-card__label">Current Streak</span>
+        </div>
+        <div class="stat-card" id="stat-longest">
+          <span class="stat-card__number" id="detail-longest-streak">0</span>
+          <span class="stat-card__label">Longest Streak</span>
+        </div>
+        <div class="stat-card" id="stat-total">
+          <span class="stat-card__number" id="detail-total-checkins">0</span>
+          <span class="stat-card__label">Total Check-ins</span>
+        </div>
+      </div>
+
+      <div class="detail__grid-section">
+        <h3 class="detail__grid-title">Activity</h3>
+        <div class="contribution-wrapper">
+          <div class="contribution-months" id="contribution-months"></div>
+          <div class="contribution-grid-container">
+            <div class="contribution-days">
+              <span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span><span>Sun</span>
+            </div>
+            <div class="contribution-grid" id="contribution-grid"></div>
+          </div>
+        </div>
+        <div class="contribution-legend">
+          <span class="contribution-legend__label">Less</span>
+          <span class="contribution-legend__box" style="opacity:0.1;"></span>
+          <span class="contribution-legend__box" style="opacity:0.4;"></span>
+          <span class="contribution-legend__box" style="opacity:0.7;"></span>
+          <span class="contribution-legend__box" style="opacity:1;"></span>
+          <span class="contribution-legend__label">More</span>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- ================================================================== -->
+  <!-- EDIT HABIT MODAL                                                    -->
+  <!-- ================================================================== -->
+  <div class="modal-overlay" id="modal-edit" style="display:none;">
+    <div class="modal-card">
+      <h3 class="modal-card__title">Edit Habit</h3>
+      <input type="hidden" id="edit-habit-id" />
+      <div class="input-group">
+        <label for="edit-habit-name">Name</label>
+        <input type="text" id="edit-habit-name" maxlength="100" />
+      </div>
+      <div class="input-group">
+        <label>Color</label>
+        <div class="add-habit-form__colors" id="edit-color-picker">
+          <button class="color-dot" data-color="#10b981" style="--dot-color:#10b981;" title="Emerald"></button>
+          <button class="color-dot" data-color="#8b5cf6" style="--dot-color:#8b5cf6;" title="Violet"></button>
+          <button class="color-dot" data-color="#f59e0b" style="--dot-color:#f59e0b;" title="Amber"></button>
+          <button class="color-dot" data-color="#ef4444" style="--dot-color:#ef4444;" title="Rose"></button>
+          <button class="color-dot" data-color="#06b6d4" style="--dot-color:#06b6d4;" title="Cyan"></button>
+          <button class="color-dot" data-color="#6366f1" style="--dot-color:#6366f1;" title="Indigo"></button>
+          <button class="color-dot" data-color="#f97316" style="--dot-color:#f97316;" title="Orange"></button>
+          <button class="color-dot" data-color="#ec4899" style="--dot-color:#ec4899;" title="Pink"></button>
+        </div>
+      </div>
+      <div class="modal-card__actions">
+        <button class="btn btn--accent btn--sm" id="btn-save-edit">Save</button>
+        <button class="btn btn--ghost btn--sm" id="btn-cancel-edit">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/dashboard.js"></script>
+  <script src="/js/habitDetail.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
