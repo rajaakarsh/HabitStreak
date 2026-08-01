@@ -16,6 +16,17 @@
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
+
+  <!-- ================================================================== -->
+  <!-- AUTH LOADING OVERLAY                                                -->
+  <!-- ================================================================== -->
+  <div id="auth-loading" class="auth-loading" aria-label="Loading">
+    <div class="auth-loading__inner">
+      <div class="auth-loading__spinner"></div>
+      <span class="auth-loading__text">HabitStreak</span>
+    </div>
+  </div>
+
   <!-- ================================================================== -->
   <!-- TOAST CONTAINER                                                     -->
   <!-- ================================================================== -->
@@ -280,6 +291,29 @@
           <p class="auth-brand__tagline">Consistency, visualized.</p>
         </div>
 
+        <!-- Google Sign-In Button -->
+        <button class="btn-google" id="btn-google" aria-label="Continue with Google">
+          <svg class="btn-google__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+            <path fill="none" d="M0 0h48v48H0z"/>
+          </svg>
+          <span class="btn__text">Continue with Google</span>
+          <span class="btn__loader"></span>
+        </button>
+
+        <!-- Hidden container for GIS renderButton fallback -->
+        <div id="g-signin-container" style="display:none;"></div>
+
+        <!-- Divider -->
+        <div class="auth-divider" id="auth-divider">
+          <span class="auth-divider__line"></span>
+          <span class="auth-divider__text">or</span>
+          <span class="auth-divider__line"></span>
+        </div>
+
         <!-- Tab Switcher -->
         <div class="auth-tabs">
           <button class="auth-tab auth-tab--active" data-tab="login" id="tab-login">Log In</button>
@@ -331,12 +365,32 @@
         <span class="topbar__brand">HabitStreak</span>
       </div>
       <div class="topbar__right">
-        <span class="topbar__email" id="user-email"></span>
-        <button class="btn btn--ghost" id="btn-logout">Log out</button>
+        <!-- Avatar dropdown -->
+        <div class="avatar-menu">
+          <button class="avatar-btn" id="avatar-btn" aria-label="User menu" aria-haspopup="true">
+            <img id="user-avatar-img" class="avatar-img" src="" alt="Profile" style="display:none;" />
+            <span id="user-avatar-fallback" class="avatar-fallback" style="display:none;"></span>
+          </button>
+          <div class="avatar-dropdown" id="avatar-dropdown" role="menu">
+            <div class="avatar-dropdown__header">
+              <span class="avatar-dropdown__name" id="user-display-name"></span>
+            </div>
+            <div class="avatar-dropdown__divider"></div>
+            <button class="avatar-dropdown__item btn--danger" id="btn-dropdown-logout" role="menuitem">
+              <i data-lucide="log-out" class="icon-inline"></i> Log out
+            </button>
+          </div>
+        </div>
       </div>
     </header>
 
     <main class="dashboard">
+      <!-- Welcome greeting -->
+      <div class="dashboard__welcome">
+        <span class="dashboard__welcome-wave">👋</span>
+        <span class="dashboard__welcome-text">Welcome back, <strong id="welcome-name"></strong></span>
+      </div>
+
       <div class="dashboard__header">
         <div>
           <h2 class="dashboard__title">Your Habits</h2>
@@ -470,12 +524,15 @@
     </div>
   </div>
 
-  <!-- Scripts -->
+  <!-- Scripts — order matters -->
+  <script>
+    window.__GOOGLE_CLIENT_ID__ = 'YOUR_GOOGLE_CLIENT_ID_HERE';
+  </script>
+  <!-- Lucide icons — loaded before the app bundle so window.lucide is available -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="/js/api.js"></script>
-  <script src="/js/auth.js"></script>
-  <script src="/js/dashboard.js"></script>
-  <script src="/js/habitDetail.js"></script>
-  <script src="/js/app.js"></script>
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <!-- Vite-compiled TypeScript entry -->
+  <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

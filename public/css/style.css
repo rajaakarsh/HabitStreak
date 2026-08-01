@@ -1454,3 +1454,282 @@ button:focus:not(:focus-visible),
 input:focus:not(:focus-visible) {
   outline: none;
 }
+
+/* ================================================================
+   GOOGLE AUTH / NEW AUTH UI ADDITIONS
+   ================================================================ */
+
+/* ── Auth Loading Overlay ─────────────────────────────────────── */
+.auth-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease);
+}
+
+.auth-loading--visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.auth-loading__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.auth-loading__spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--text-1);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.auth-loading__text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-3);
+}
+
+/* ── Google Sign-In Button ─────────────────────────────────────── */
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 11px 16px;
+  background: #fff;
+  color: #3c4043;
+  border: 1px solid #dadce0;
+  border-radius: var(--radius-s);
+  font-family: var(--font);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: all var(--speed) var(--ease);
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.btn-google:hover:not(:disabled) {
+  background: #f8f9fa;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  transform: translateY(-1px);
+}
+
+.btn-google:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn-google:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-google__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.btn-google .btn__loader {
+  border-color: rgba(60, 64, 67, 0.2);
+  border-top-color: #3c4043;
+}
+
+.btn-google.btn--loading .btn__text { display: none; }
+.btn-google.btn--loading .btn__loader { display: inline-block; }
+
+/* ── Auth Divider ─────────────────────────────────────────────── */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.auth-divider__line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.auth-divider__text {
+  font-size: 0.75rem;
+  color: var(--text-3);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ── Avatar Menu (Topbar) ─────────────────────────────────────── */
+.avatar-menu {
+  position: relative;
+}
+
+.avatar-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
+  padding: 0;
+}
+
+.avatar-btn:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatar-fallback {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Avatar Dropdown Menu ─────────────────────────────────────── */
+.avatar-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 200px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  opacity: 0;
+  transform: translateY(-6px) scale(0.97);
+  pointer-events: none;
+  transition: opacity 0.18s var(--ease), transform 0.18s var(--ease);
+  z-index: 100;
+}
+
+.avatar-dropdown--open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+.avatar-dropdown__header {
+  padding: 8px 12px 10px;
+}
+
+.avatar-dropdown__name {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.avatar-dropdown__divider {
+  height: 1px;
+  background: var(--border);
+  margin: 2px 0 6px;
+}
+
+.avatar-dropdown__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-align: left;
+  transition: background var(--speed) var(--ease), color var(--speed) var(--ease);
+}
+
+.avatar-dropdown__item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ── Dashboard Welcome Greeting ───────────────────────────────── */
+.dashboard__welcome {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  animation: fadeSlideUp 0.4s var(--ease) both;
+}
+
+.dashboard__welcome-wave {
+  font-size: 1.5rem;
+  line-height: 1;
+  animation: wave 1.2s ease-in-out both;
+  transform-origin: 70% 70%;
+  display: inline-block;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  20%  { transform: rotate(-10deg); }
+  40%  { transform: rotate(14deg); }
+  60%  { transform: rotate(-8deg); }
+  80%  { transform: rotate(10deg); }
+}
+
+.dashboard__welcome-text {
+  font-size: 0.9375rem;
+  color: var(--text-2);
+  font-weight: 400;
+}
+
+.dashboard__welcome-text strong {
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+/* ── Toast Improvements ───────────────────────────────────────── */
+.toast--fade-out {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ── Responsive additions ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .btn-google { font-size: 0.8125rem; padding: 10px 14px; }
+  .dashboard__welcome { flex-direction: row; padding: 14px 16px; }
+  .avatar-dropdown { right: -8px; }
+}
