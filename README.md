@@ -1,8 +1,6 @@
-# ⚡ HabitStreak
+# HabitStreak
 
-A modern, lightweight Habit Tracker SaaS designed to help users build consistency, log daily check-ins, and visualize their progress. Built with a robust Node.js/Express backend, a secure JWT-based authentication system, and a snappy, responsive Single Page Application (SPA) frontend.
-
----
+A modern, lightweight Habit Tracker SaaS designed to help users build consistency, log daily check-ins, and visualize their progress. Built with a Node.js/Express backend, a secure JWT-based authentication system, and a responsive Vanilla JavaScript Single Page Application (SPA) frontend.
 
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D%2018.0.0-blue.svg)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -11,64 +9,53 @@ A modern, lightweight Habit Tracker SaaS designed to help users build consistenc
 
 ---
 
-## 📖 Table of Contents
+## Table of Contents
 
-1. [Overview](#-overview)
-2. [Features](#-features)
-3. [Tech Stack](#-tech-stack)
-4. [Architecture & Directory Structure](#-architecture--directory-structure)
-5. [Getting Started](#-getting-started)
-   - [Prerequisites](#prerequisites)
-   - [Installation](#installation)
-   - [Configuration](#configuration)
-6. [API Documentation](#-api-documentation)
-   - [Authentication Endpoints](#authentication-endpoints)
-   - [Habits & Check-Ins Endpoints](#habits--check-ins-endpoints)
-7. [Frontend Architecture](#-frontend-architecture)
-8. [Deployment](#-deployment)
-   - [Local Production Build](#local-production-build)
-   - [Vercel Serverless Deployment](#vercel-serverless-deployment)
-9. [Troubleshooting](#-troubleshooting)
-10. [Contributing](#-contributing)
-11. [License](#-license)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Architecture](#project-architecture)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [API Documentation](#api-documentation)
+- [Frontend Architecture](#frontend-architecture)
+- [Deployment](#deployment)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
-## 🔍 Overview
+## Features
 
-**HabitStreak** is an all-in-one habit-tracking application that empowers users to create customized habits, log daily completions (check-ins), and maintain streaks. 
-
-Unlike heavy frameworks, HabitStreak utilizes a high-performance **Vanilla JS Single Page Application (SPA)** architecture on the frontend, combined with a secure, stateless **Express REST API** on the backend. It features an intelligent **zero-configuration fallback** that automatically spins up an in-memory MongoDB database if no external database is configured, making local development and evaluation completely friction-free.
-
----
-
-## ✨ Features
-
-*   🔒 **Secure JWT Authentication**: Implements double-token rotation (short-lived Access Tokens in memory, long-lived Refresh Tokens) with secure password hashing via `bcryptjs`.
-*   🔥 **Streak Engine**: Real-time calculation of current and historical completion streaks.
-*   ⚡ **Zero-Config Local Setup**: Automatically boots up an in-memory MongoDB instance (`mongodb-memory-server`) if no connection string is provided.
-*   📱 **Responsive SPA Frontend**: A fluid, desktop-and-mobile-friendly UI with client-side routing, custom toast notifications, and dynamic icon rendering via Lucide.
-*   ☁️ **Serverless Ready**: Fully optimized for deployment on Vercel with automated connection pooling and serverless function wrappers.
+- **Secure JWT Authentication**: Implements double-token rotation (short-lived access tokens in memory, long-lived refresh tokens) with password hashing via `bcryptjs`.
+- **Streak Engine**: Real-time calculation of current and historical completion streaks.
+- **Zero-Config Local Setup**: Automatically boots up an in-memory MongoDB instance (`mongodb-memory-server`) if no external database connection string is provided.
+- **Responsive SPA Frontend**: Desktop- and mobile-friendly UI featuring client-side routing, custom toast notifications, and dynamic icon rendering via Lucide Icons.
+- **Serverless Ready**: Fully optimized for deployment on Vercel with automated connection pooling and serverless function wrappers.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Backend
-*   **Runtime**: Node.js (v18+)
-*   **Framework**: Express.js
-*   **Database ORM**: Mongoose (MongoDB)
-*   **Security**: JSON Web Tokens (`jsonwebtoken`), Password Hashing (`bcryptjs`), CORS, Cookie Parser
-*   **Development**: `mongodb-memory-server` (for zero-config local testing)
+- **Runtime**: Node.js (v18+)
+- **Framework**: Express.js
+- **Database ORM**: Mongoose (MongoDB)
+- **Security**: JSON Web Tokens (`jsonwebtoken`), Password Hashing (`bcryptjs`), CORS, Cookie Parser
+- **Development**: `mongodb-memory-server` (for zero-config local testing)
 
 ### Frontend
-*   **Architecture**: Vanilla JavaScript SPA (Single Page Application)
-*   **Styling**: Custom Responsive CSS3 (Flexbox, Grid, CSS Variables)
-*   **Icons**: Lucide Icons
+- **Architecture**: Vanilla JavaScript Single Page Application (SPA)
+- **Styling**: Custom Responsive CSS3 (Flexbox, Grid, CSS Variables)
+- **Icons**: Lucide Icons
 
 ---
 
-## 📐 Architecture & Directory Structure
+## Project Architecture
+
+### Directory Structure
 
 ```
 ├── .gitignore
@@ -119,29 +106,31 @@ Unlike heavy frameworks, HabitStreak utilizes a high-performance **Vanilla JS Si
 
 ---
 
-## 🚀 Getting Started
+## Prerequisites
 
-### Prerequisites
+- **Node.js**: `v18.x` or higher
+- **MongoDB** (Optional): A local MongoDB instance or a MongoDB Atlas connection URI. If omitted, the application automatically runs using an in-memory database (`mongodb-memory-server`).
 
-*   **Node.js**: `v18.x` or higher installed.
-*   **MongoDB** (Optional): A local MongoDB instance or a MongoDB Atlas connection URI. If not present, the app will automatically run using an in-memory database.
+---
 
-### Installation
+## Installation
 
-1. **Clone the repository:**
+1. Clone the repository:
    ```bash
    git clone https://github.com/imaakarsh/HabitStreak.git
    cd HabitStreak
    ```
 
-2. **Install dependencies:**
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-### Configuration
+---
 
-Create a `.env` file in the root directory of the project:
+## Configuration
+
+Create a `.env` file in the root directory:
 
 ```env
 # Server Configuration
@@ -156,14 +145,22 @@ JWT_REFRESH_SECRET=your_super_secret_refresh_token_key_456!
 MONGODB_URI=mongodb://localhost:27017/habitstreak
 ```
 
-### Running the Application
+---
 
-#### Development Mode (with hot-reloading)
+## Usage
+
+### Development Mode
+
+Start the server with hot-reloading:
+
 ```bash
 npm run dev
 ```
 
-#### Production Mode
+### Production Mode
+
+Start the production server:
+
 ```bash
 npm start
 ```
@@ -172,140 +169,141 @@ Once started, open your browser and navigate to `http://localhost:3000`.
 
 ---
 
-## 🔌 API Documentation
+## API Documentation
 
 All API endpoints are prefixed with `/api`.
 
 ### Authentication Endpoints
 
 #### 1. Register a New User
-*   **Endpoint**: `POST /api/auth/signup`
-*   **Request Body**:
-    ```json
-    {
-      "email": "user@example.com",
-      "password": "securepassword123"
+- **Endpoint**: `POST /api/auth/signup`
+- **Request Body**:
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "securepassword123"
+  }
+  ```
+- **Success Response (201 Created)**:
+  ```json
+  {
+    "message": "Account created successfully.",
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5...",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5...",
+    "user": {
+      "id": "64b9f2...",
+      "email": "user@example.com"
     }
-    ```
-*   **Success Response (201 Created)**:
-    ```json
-    {
-      "message": "Account created successfully.",
-      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5...",
-      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5...",
-      "user": {
-        "id": "64b9f2...",
-        "email": "user@example.com"
-      }
-    }
-    ```
+  }
+  ```
 
 #### 2. User Login
-*   **Endpoint**: `POST /api/auth/login`
-*   **Request Body**:
-    ```json
-    {
-      "email": "user@example.com",
-      "password": "securepassword123"
+- **Endpoint**: `POST /api/auth/login`
+- **Request Body**:
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "securepassword123"
+  }
+  ```
+- **Success Response (200 OK)**:
+  ```json
+  {
+    "message": "Logged in successfully.",
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5...",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5...",
+    "user": {
+      "id": "64b9f2...",
+      "email": "user@example.com"
     }
-    ```
-*   **Success Response (200 OK)**:
-    ```json
-    {
-      "message": "Logged in successfully.",
-      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5...",
-      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5...",
-      "user": {
-        "id": "64b9f2...",
-        "email": "user@example.com"
-      }
-    }
-    ```
+  }
+  ```
 
 #### 3. Refresh Access Token
-*   **Endpoint**: `POST /api/auth/refresh`
-*   **Request Body**:
-    ```json
-    {
-      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5..."
-    }
-    ```
-*   **Success Response (200 OK)**:
-    ```json
-    {
-      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5..."
-    }
-    ```
+- **Endpoint**: `POST /api/auth/refresh`
+- **Request Body**:
+  ```json
+  {
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5..."
+  }
+  ```
+- **Success Response (200 OK)**:
+  ```json
+  {
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5..."
+  }
+  ```
 
 ---
 
 ### Habits & Check-Ins Endpoints
+
 *All requests below require an `Authorization: Bearer <accessToken>` header.*
 
 #### 1. Create a Habit
-*   **Endpoint**: `POST /api/habits`
-*   **Request Body**:
-    ```json
-    {
-      "title": "Read 10 Pages",
-      "description": "Read a non-fiction book every morning",
-      "frequency": "daily"
-    }
-    ```
+- **Endpoint**: `POST /api/habits`
+- **Request Body**:
+  ```json
+  {
+    "title": "Read 10 Pages",
+    "description": "Read a non-fiction book every morning",
+    "frequency": "daily"
+  }
+  ```
 
 #### 2. Get All Habits
-*   **Endpoint**: `GET /api/habits`
-*   **Success Response (200 OK)**:
-    ```json
-    [
-      {
-        "_id": "64b9f5...",
-        "title": "Read 10 Pages",
-        "description": "Read a non-fiction book every morning",
-        "frequency": "daily",
-        "streak": 3,
-        "createdAt": "2023-07-21T08:00:00.000Z"
-      }
-    ]
-    ```
+- **Endpoint**: `GET /api/habits`
+- **Success Response (200 OK)**:
+  ```json
+  [
+    {
+      "_id": "64b9f5...",
+      "title": "Read 10 Pages",
+      "description": "Read a non-fiction book every morning",
+      "frequency": "daily",
+      "streak": 3,
+      "createdAt": "2023-07-21T08:00:00.000Z"
+    }
+  ]
+  ```
 
 #### 3. Log a Check-In
-*   **Endpoint**: `POST /api/habits/:id/checkin`
-*   **Request Body**:
-    ```json
-    {
-      "date": "2023-10-24"
-    }
-    ```
+- **Endpoint**: `POST /api/habits/:id/checkin`
+- **Request Body**:
+  ```json
+  {
+    "date": "2023-10-24"
+  }
+  ```
 
 ---
 
-## 🖥️ Frontend Architecture
+## Frontend Architecture
 
-The frontend is built as a lightweight **Single Page Application (SPA)** inside `public/`.
+The frontend is structured as a Single Page Application (SPA) inside the `public/` directory:
 
-*   **`app.js` (Router & Orchestrator)**: Manages active views (`home`, `auth`, `dashboard`, `detail`) by toggling CSS classes (`page--active`). It handles session restoration and global UI states.
-*   **`api.js` (HTTP Client)**: A wrapper around the native `fetch` API. It automatically appends JWT tokens to outgoing requests and handles token expiration by requesting a new access token via the `/refresh` endpoint before retrying the original request.
-*   **`auth.js`**: Manages login, registration, and token storage in `localStorage`.
-*   **`dashboard.js` & `habitDetail.js`**: Render dynamic HTML elements, process user actions, and trigger API calls to update habits and check-ins.
+- **`app.js` (Router & Orchestrator)**: Manages active views (`home`, `auth`, `dashboard`, `detail`) by toggling CSS classes (`page--active`). Handles session restoration and global UI states.
+- **`api.js` (HTTP Client)**: Wraps the native `fetch` API. Automatically appends JWT tokens to outgoing requests and handles token expiration by requesting a new access token via `/api/auth/refresh` before retrying the original request.
+- **`auth.js`**: Handles login, registration, and token storage in `localStorage`.
+- **`dashboard.js` & `habitDetail.js`**: Render dynamic HTML elements, process user actions, and trigger API calls to update habits and check-ins.
 
 ---
 
-## ☁️ Deployment
+## Deployment
 
 ### Local Production Build
 
 To run the application in a production-like environment locally:
 
-1. Ensure your `.env` file has production-grade secrets.
+1. Ensure your `.env` file contains production-grade secrets.
 2. Run the production start script:
    ```bash
-   npm run start
+   npm start
    ```
 
 ### Vercel Serverless Deployment
 
-This project is configured out-of-the-box for deployment on **Vercel** using Serverless Functions.
+This project is configured for deployment on Vercel using Serverless Functions.
 
 1. Install the Vercel CLI:
    ```bash
@@ -315,45 +313,47 @@ This project is configured out-of-the-box for deployment on **Vercel** using Ser
    ```bash
    vercel
    ```
-3. Add your Environment Variables (`MONGODB_URI`, `JWT_SECRET`, `JWT_REFRESH_SECRET`) in your Vercel Project Dashboard.
+3. Add your environment variables (`MONGODB_URI`, `JWT_SECRET`, `JWT_REFRESH_SECRET`) in your Vercel Project Dashboard.
 
-#### How Vercel Deployment Works:
-*   `vercel.json` routes all `/api/*` traffic to `api/index.js`.
-*   `api/index.js` exports the Express `app` instance from `server/server.js`.
-*   The database connection logic in `server/server.js` detects the Vercel environment (`process.env.VERCEL`) and uses an optimized connection-pooling middleware to prevent database connection exhaustion across serverless invocations.
-
----
-
-## 🛠️ Troubleshooting
-
-### 1. "Could not connect to MongoDB — Starting in-memory MongoDB..."
-*   **Reason**: This is a feature, not a bug! If you do not provide a `MONGODB_URI` in your `.env` file, the server automatically spins up a local, in-memory database.
-*   **Note**: Data stored in the in-memory database **will reset** whenever the server restarts. To persist data, connect to a real MongoDB instance.
-
-### 2. "JWT secrets are not configured on the server"
-*   **Solution**: Ensure you have created a `.env` file in the root directory and defined both `JWT_SECRET` and `JWT_REFRESH_SECRET`.
-
-### 3. CORS Errors in Development
-*   **Solution**: The Express backend has CORS enabled via the `cors` package. If you are running the frontend on a different port than the backend, ensure your frontend API requests point to the correct backend port (default: `3000`).
+#### How Vercel Deployment Works
+- `vercel.json` routes all `/api/*` traffic to `api/index.js`.
+- `api/index.js` exports the Express `app` instance from `server/server.js`.
+- Database connection logic in `server/server.js` detects the Vercel environment (`process.env.VERCEL`) and uses connection-pooling middleware to prevent connection exhaustion across serverless invocations.
 
 ---
 
-## 🤝 Contributing
+## Troubleshooting
 
-Contributions make the open-source community an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+### "Could not connect to MongoDB — Starting in-memory MongoDB..."
+If no `MONGODB_URI` is provided in `.env`, the server automatically initializes an in-memory database. Data stored in the in-memory database resets whenever the server restarts. To persist data across restarts, connect to a real MongoDB instance.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+### "JWT secrets are not configured on the server"
+Ensure a `.env` file exists in the root directory and contains defined values for both `JWT_SECRET` and `JWT_REFRESH_SECRET`.
+
+### CORS Errors in Development
+The Express backend enables CORS via the `cors` package. If running the frontend on a different port than the backend, verify that frontend API requests point to the backend port (default: `3000`).
 
 ---
 
-## 📄 License
+## Contributing
+
+1. Fork the repository.
+2. Create a feature branch:
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m 'Add some AmazingFeature'
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. Open a Pull Request.
+
+---
+
+## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-*Crafted with ❤️ by the HabitStreak Team.*
